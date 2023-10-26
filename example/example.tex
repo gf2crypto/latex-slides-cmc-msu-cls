@@ -1,0 +1,235 @@
+%! Author = Ivan Chizhov
+%! Date = 08.11.2022
+
+% Preamble
+\documentclass{../cmcbeamer}
+\uselanguage{Russian}
+\languagepath{Russian}
+\usepackage{blindtext}
+
+\title{Пример использования презентации класса `cmcbeamer`}
+\subtitle{Курсовая работа}
+\author{%
+  Петров Алексей
+  % \begin{flushleft}
+  %   {\small%
+  %   \textit{%
+  %     Научный руководитель: Чижов Иван Владимирович\newline
+  %     доцент кафедры информационной безопасности, канд.~физ.-мат.~наук
+  %   }
+  % }
+  % \end{flushleft}
+}
+\institute[ВМК МГУ]{%
+  МГУ имени М.В.Ломоносова\\
+  факультет вычислительной математики и кибернетики\\
+  кафедра информационной безопасности
+}
+
+\date[]{\today}
+
+\subject{Доклад}
+
+
+% Document
+\begin{document}
+
+\section{Первый раздел}\label{sec:example:first}
+
+
+\begin{frame}\frametitle{Заголовок слайда}
+  This is some text in the first frame. This is some text in the first
+  frame. This is some text in the first frame.
+
+  \textit{Курсивный шрифт}.
+
+  \textbf{Жирный шрифт}.
+
+  \textit{\textbf{Курсивный жирный шрифт}}.
+
+\end{frame}
+
+\begin{frame}\frametitle{Sample frame title}
+  This is a text in second frame.  For the sake of showing an example.
+
+  \begin{itemize}
+  \item<1-> Text visible on slide 1
+  \item<2-> Text visible on slide 2
+  \item<3> Text visible on slide 3
+  \item<4-> Text visible on slide 4
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{There Is No Largest Prime Number}
+  \framesubtitle{The proof uses \textit{reductio ad absurdum}.}
+
+  \begin{theorem}
+    There is no largest prime number.
+  \end{theorem}
+  
+  \begin{proof}
+    \begin{enumerate}
+    \item<1-| alert@1> Suppose $p$ were the largest prime number.
+    \item<2-> Let $q$ be the product of the first $p$ numbers.
+    \item<3-> Then $q+1$ is not divisible by any of them.
+    \item<1-> Thus $q+1$ is also prime and greater than $p$.\qedhere
+    \end{enumerate}
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Two-column slide}
+\begin{columns}
+  \column{0.5\textwidth}
+
+  This is a text in first column.
+  \[
+    E=mc^{2}.
+  \]
+
+  \begin{itemize}
+  \item First item
+  \item Second item
+  \end{itemize}
+
+  \column{0.5\textwidth}
+  This text will be in the second column and on a second thoughts,
+  this is a nice looking layout in some cases.
+\end{columns}
+\end{frame}
+
+\section{Теорема Пифагора}\label{sec:thm-pif}
+
+\begin{frame}{Прямоугольные треугольники}
+  \onslide*<1>{
+    \begin{definition}\label{def:triangle}
+      \emph{Прямоугольным треугольником} называется треугольник, у
+      которого один угол равен 90 градусов.
+    \end{definition}
+  }
+    \begin{theorem}<2->
+      Сумма квадратов катетов равна квадрату гипотенузы, т.е.
+      \begin{equation}
+        \label{eq:thm-pif}
+        a^2+b^2=c^2.
+      \end{equation}
+    \end{theorem}
+    \only<3>{
+    \begin{proof}
+      Доказательство очень простое.
+    \end{proof}
+    }
+  \only<4>{
+    \begin{remark}\label{rem:example:pif}
+      Множество решений уравнения~\eqref{eq:thm-pif} называется
+      пифагоровыми тройками.
+
+      Обозначим их символом $\mathcal{C}$ (каллиграфическое $C$).
+
+      Очевидно, что $\mathcal{C}\subseteq \mathbb{R}^{3}$.
+
+      А это множество $\mathcal{B}$ (Каллиграфическое $B$).
+    \end{remark}
+  }
+\end{frame}
+
+\begin{frame}{Слайд с паузами (нажимайте далее)}
+ In this slide \pause%
+
+ the text will be partially visible \pause%
+
+ And finally everything will be there.
+\end{frame}
+
+\begin{frame}{Окружения с нумерацией и без}
+  \begin{proposition}\label{prop:example:test}
+    Небольшое утверждение, которое ничего не постулирует, а просто
+    показывается различные формулы, например, \(2^{x}\) или
+    \(f(x)=x^{2}+ax+ b\).
+
+    Также вот ещё одна формула
+    \[
+      \int\frac{e^{x}}{x^{2}}dx=Ei(x)-\frac{e^{x}}{x}+C.
+    \]
+    Конец утверждения.
+  \end{proposition}
+
+  \begin{proposition*}[Заметили? Нет номера]
+    Это утверждение не имеет номера и содержит немного текста.
+    % Некоторый текст в этом утверждении, он небольшой, но все же текст.
+  \end{proposition*}
+\end{frame}
+
+\begin{frame}{Вставка картинок}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[scale=0.2]{images/msu-cmc-logo.png}
+      \caption{Здание ВМК и ГЗ МГУ}\label{fig:example:cmc-gz}
+    \end{figure}
+
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item Картинка с главным зданием МГУ и корпусов факультета
+      вычислительной математики и кибернетики.
+    \item Очень красивые здания.
+    \item Приезжайте на Воробьевы горы, чтобы их увидеть лично.
+    \end{itemize}
+    
+  \end{columns}
+\end{frame}
+
+\section{Ссылки на разные научные статьи}\label{sec:ref-to-articles}
+
+\begin{frame}{Ссылки}
+  \begin{example}\label{ex:example:refs}
+    \begin{itemize}
+    \item Статья~\cite{ahlswede1977} посвящена геометрии булевого
+      куба.
+    \item Статья~\cite{ahmed2013} рассказывает о конструкции
+      генератора псевдослучайных чисел на основе теории кодов,
+      исправляющих ошибки.
+    \end{itemize}
+  \end{example}
+
+  \begin{example}
+    Это пример.
+  \end{example}
+\end{frame}
+
+
+\section{Гиперссылки}\label{sec:hyper}
+
+\begin{frame}
+  \frametitle{Ссылки}
+
+  \begin{itemize}
+  \item<1-> Ссылка на раздел~\ref{sec:thm-pif} с теоремой Пифагора.
+  \item<2-> А формула~\eqref{eq:thm-pif} описывает суть теоремы
+    Пифагора.
+  \item<3-> Чтобы увидеть ссылки на разные научные статьи, смотри
+    раздел \hyperref[sec:ref-to-articles]{\textquote{Ссылки на разные
+        научные статьи}}.
+  \item<2-> А вот ссылка на
+    \href{https://ru.wikipedia.org}{википедию}.
+  \end{itemize}
+\end{frame}
+
+\if \MINTED\empty
+% do nothing, minted is off
+\else
+\section{Пакет minted}\label{sec:minted}
+
+\begin{example}\label{ex:example:minted}
+  Это пример кода на языке \emph{python}.
+  \inputminted{python}{code.py}
+\end{example}
+\fi
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
