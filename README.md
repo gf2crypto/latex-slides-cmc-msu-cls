@@ -15,6 +15,12 @@ There are two ways to install this document class;
     git submodule add https://github.com/gf2crypto/latex-slides-cmc-msu-cls.git
 ```
 
+NOTE! If you choose not `latex-slides-cmc-msu-cls` to store documentclass files you have to add `path-to-documentclass/images` to the `graphicspath`, for example
+
+```latex
+   \graphicspath{{path-to-documentclass/images}{path-to-your-images}}
+```
+
 ## Using document class.
 
 Add `latex-slides-cmc-msu-cls/cmcbeamer` as documentclass:
