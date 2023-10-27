@@ -23,7 +23,7 @@
 \newcommand{\OUTLINE}{
   \AtBeginSection[]{
   \begin{frame}<beamer>
-    \frametitle{\translate{Table of contents}}
+    \frametitle{\translate{Outline}}
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
   }
