@@ -2,7 +2,7 @@
 %! Date = 08.11.2022
 
 % Preamble
-\documentclass{../cmcbeamer}
+\documentclass[nooutline]{../cmcbeamer}
 \uselanguage{Russian}
 \languagepath{Russian}
 \usepackage{blindtext}
@@ -10,16 +10,18 @@
 \title{Пример использования презентации класса `cmcbeamer`}
 \subtitle{Курсовая работа}
 \author{%
-  Петров Алексей
-  % \begin{flushleft}
-  %   {\small%
-  %   \textit{%
-  %     Научный руководитель: Чижов Иван Владимирович\newline
-  %     доцент кафедры информационной безопасности, канд.~физ.-мат.~наук
-  %   }
-  % }
-  % \end{flushleft}
+  Петров Алексей Иванович\\[\baselineskip]%\texorpdfstring{\\[\baselineskip]}{}
+  \makebox[6cm]{}
+  \parbox{0.3\textwidth}{
+    \fontsize{8}{10}\selectfont
+    \textit{%
+      Науч. рук.:\hfill \break%
+      Чижов Иван Владимирович,\hfill\break%
+      доцент кафедры ИБ ВМК МГУ,\hfill\break%
+      канд. физ.-мат. наук\hfill}
+  }
 }
+
 \institute[ВМК МГУ]{%
   МГУ имени М.В.Ломоносова\\
   факультет вычислительной математики и кибернетики\\
@@ -100,6 +102,13 @@
 \end{frame}
 
 \section{Теорема Пифагора}\label{sec:thm-pif}
+
+\begin{transitionframe}
+  \begin{center}
+    { \Huge \textcolor{black}{Теорема Пифагора}}
+  \end{center}
+\end{transitionframe}
+
 
 \begin{frame}{Прямоугольные треугольники}
   \onslide*<1>{
@@ -194,9 +203,16 @@
     \end{itemize}
   \end{example}
 
-  \begin{example}
-    Это пример.
-  \end{example}
+  \begin{example*}
+    Это пример без нумерации.
+    Оформляется он также как и пример с нумерацией.
+    В том числе изменяются цвета префикса списков:
+
+    \begin{itemize}
+    \item Один
+    \item Два
+    \end{itemize}
+  \end{example*}
 \end{frame}
 
 

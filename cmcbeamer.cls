@@ -18,6 +18,21 @@
     \RequirePackage{minted}
 }}
 
+%%%% NOOUTLINE option: disable outline (for example to use transition
+%%%% frames)
+\newcommand{\OUTLINE}{
+  \AtBeginSection[]{
+  \begin{frame}<beamer>
+    \frametitle{\translate{Table of contents}}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+  }
+}
+
+\DeclareOption{nooutline}{%
+  \renewcommand{\OUTLINE}{}
+}
+
 %%%% PASS other options of beamer package
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
 \ProcessOptions\relax
@@ -91,7 +106,8 @@ xcolor={dvipsnames, hyperref, table},
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english, russian]{babel}
 % \RequirePackage[scaled=.95]{gentium}   %% ОЧЕНЬ красивый шрифт, но есть проблемы с bold, отключаем до обновлений
-\RequirePackage[sups,scaled=.97]{XCharter}  %% неплохой, стильный шрифт
+% \RequirePackage[sups,scaled=.97]{XCharter}  %% неплохой, стильный шрифт
+\RequirePackage[default]{lato}
 \RequirePackage[cal=boondoxo]{mathalfa}  %% красивые каллиграфические буквы
 
 %%%%%%%%%%%%%%%%%%%Обеспечиваем работу с математикой%%%%%%%%%%%%%%%%%
@@ -112,18 +128,18 @@ xcolor={dvipsnames, hyperref, table},
 \RequirePackage{upgreek}
 %Дополнительные символы
 \RequirePackage{textcomp}
-\usefonttheme[onlymath]{serif}
+% \usefonttheme[onlymath]{serif}
 
 %%%%%%%%%%%%%%%%%%%Настраиваем дизайн текста (отступы, интервалы и пр.)&&&&&&
 \RequirePackage{hyperref}
 %%% Красивые гиперссылки
 \hypersetup{
     colorlinks=true,
-    linkcolor=structure.fg!75!black,
-    filecolor=NavyBlue,
-    runcolor=NavyBlue,
-    urlcolor=NavyBlue,
-    citecolor=ForestGreen,
+    linkcolor=structure.fg,
+    filecolor=structure.fg,
+    runcolor=structure.fg,
+    urlcolor=structure.fg,
+    citecolor=structure.fg,
     pdfpagemode=FullScreen,
 }
 \urlstyle{same}
@@ -412,6 +428,14 @@ titlenumbered
 %     \end{beamercolorbox}
 % }
 
+\definecolor{blue}{RGB}{34,185,255}
+\definecolor{red}{RGB}{255,34,75}
+\definecolor{yellow}{RGB}{255,214,34}
+\definecolor{green}{RGB}{34,255,104}
+\definecolor{purple}{RGB}{255,34,185}
+\definecolor{orange}{RGB}{255,104,34}
+\definecolor{background}{RGB}{255,253,218}
+
 %%%%%%% Красивое оформление математических окружений
 % \RequirePackage{thmtools}
 \setbeamertemplate{theorems}[numbered]  % using theorem numbering
@@ -419,152 +443,121 @@ titlenumbered
                                 % and figures
 \newtheorem{proposition}{\translate{Proposition}}
 \newtheorem*{proposition*}{\translate{Proposition}}
+\newtheorem*{theorem*}{\translate{Theorem}}
+\newtheorem*{lemma*}{\translate{Lemma}}
+\newtheorem*{corollary*}{\translate{Corollary}}
 \theoremstyle{definition}
 \newtheorem{remark}{\translate{Remark}}
+\newtheorem*{example*}{\translate{Example}}
 % \useinnertheme{rounded}
 
+\setbeamercolor{structure}{fg=red}
+
 \BeforeBeginEnvironment{definition}{
-  \setbeamercolor{block title}{fg=ForestGreen!70!black, bg=ForestGreen!10}
-  \setbeamercolor{block body}{fg=black, bg=ForestGreen!5}
+  \setbeamercolor{block title}{fg=white, bg=orange!70!black}
+  \setbeamercolor{block body}{fg=black, bg=orange!5!white}
 }
 
 \BeforeBeginEnvironment{theorem}{
-  \setbeamercolor{block title}{fg=structure.fg!70!black, bg=NavyBlue!20}
-  \setbeamercolor{block body}{fg=black, bg=NavyBlue!10}
+  \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
+}
+\BeforeBeginEnvironment{theorem*}{
+  \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
+}
+
+\BeforeBeginEnvironment{lemma}{
+  \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
+}
+\BeforeBeginEnvironment{lemma*}{
+  \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
+}
+
+\BeforeBeginEnvironment{corollary}{
+  \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
+}
+\BeforeBeginEnvironment{corollary*}{
+  \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
 }
 
 \BeforeBeginEnvironment{proposition}{
-  \setbeamercolor{block title}{fg=structure.fg!70!black, bg=NavyBlue!20}
-  \setbeamercolor{block body}{fg=black, bg=NavyBlue!10}
+    \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
 }
 
 \BeforeBeginEnvironment{proposition*}{
-  \setbeamercolor{block title}{fg=structure.fg!70!black, bg=NavyBlue!20}
-  \setbeamercolor{block body}{fg=black, bg=NavyBlue!10}
+  \setbeamercolor{block title}{fg=white, bg=red!70!black}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
+}
+
+\BeforeBeginEnvironment{proof}{
+  \setbeamercolor{block title}{fg=structure.fg, bg=red!5!white}
+  \setbeamercolor{block body}{fg=black, bg=red!5!white}
 }
 
 
 \BeforeBeginEnvironment{remark}{
-  \setbeamercolor{block title}{fg=RawSienna!70!black, bg=RawSienna!20}
-  \setbeamercolor{block body}{fg=black, bg=RawSienna!10}
+  \setbeamercolor{block title}{fg=white, bg=purple!70!black}
+  \setbeamercolor{block body}{fg=black, bg=purple!5!white}
 }
 
-\setbeamercolor{block title example}{fg=green!50!black, bg=green!50!black!30}
-\setbeamercolor{block body example}{fg=black, bg=green!10!white}
-
-% \BeforeBeginEnvironment{example}{
-%   \setbeamercolor{block title}{fg=green!70!black, bg=green!20}
-%   \setbeamercolor{block body}{fg=black, bg=green!10}
-% }
+%%% Example block
+\setbeamercolor{block title example}{fg=white, bg=blue!70!black}
+\setbeamercolor{block body example}{fg=black, bg=blue!5!white}
 
 
 
-%\RequirePackage[framemethod=TikZ]{mdframed}
-% \mdfsetup{skipabove=1em,skipbelow=0em}
+\addtobeamertemplate{block example begin}{}{
+  \setbeamercolor{itemize item}{fg=blue!70!black}%
+  \setbeamercolor{itemize subitem}{fg=blue!70!black}%
+  \setbeamercolor{itemize subsubitem}{fg=blue!70!black}%
+  \setbeamercolor{enumerate item}{fg=blue!70!black}%
+  \setbeamercolor{enumerate subitem}{fg=blue!70!black}%
+  \setbeamercolor{enumerate subsubitem}{fg=blue!70!black}%
+}
 
-%%%% Определения
-% \declaretheoremstyle[
-%     headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont,
-%     mdframed={
-%         linewidth=2pt,
-%         rightline=false, topline=false, bottomline=false,
-%         linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
-%     }
-% ]{thmgreenbox}
+%%% Example without numbering
+\BeforeBeginEnvironment{example*}{
+  \setbeamercolor{block title}{fg=white, bg=blue!70!black}%
+  \setbeamercolor{block body}{fg=black, bg=blue!5!white}%
+  \setbeamercolor{itemize item}{fg=blue!70!black}%
+  \setbeamercolor{itemize subitem}{fg=blue!70!black}%
+  \setbeamercolor{itemize subsubitem}{fg=blue!70!black}%
+  \setbeamercolor{enumerate item}{fg=blue!70!black}%
+  \setbeamercolor{enumerate subitem}{fg=blue!70!black}%
+  \setbeamercolor{enumerate subsubitem}{fg=blue!70!black}%
+}
 
-% \theoremstyle{definition}
-% \declaretheorem[style=thmgreenbox, numberwithin=section, name=Определение]{definition}
+\newenvironment{transitionframe}{
+  \setbeamercolor{background canvas}{bg=yellow}
+  \begin{frame}}{
+    \end{frame}
+}
 
-%%% Пример
-
-% \declaretheoremstyle[
-%     headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
-%     mdframed={
-%         linewidth=2pt,
-%         rightline=false, topline=false, bottomline=false,
-%         linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
-%     }
-% ]{thmbluebox}
-
-% \declaretheorem[style=thmbluebox, numberwithin=section, name=Пример]{example}
-% \declaretheorem[style=thmbluebox, numbered=no, name=Пример]{example*}
-
-% %%%%% Замечание
-
-% \declaretheoremstyle[
-%     headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
-%     mdframed={
-%         linewidth=2pt,
-%         rightline=false, topline=false, bottomline=false,
-%         linecolor=NavyBlue
-%     }
-% ]{thmblueline}
-
-% \declaretheorem[style=thmblueline, numberwithin=section, name=Замечание]{remark}
-% \declaretheorem[style=thmblueline, numbered=no, name=Замечание]{remark*}
-
-% %%%%% Утверждения
-% \declaretheoremstyle[
-%     headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
-%     mdframed={
-%         linewidth=2pt,
-%         rightline=false, topline=false, bottomline=false,
-%         linecolor=RawSienna, backgroundcolor=RawSienna!5,
-%     }
-% ]{thmredbox}
-
-% \theoremstyle{plain}
-% %%%% С нумерацией
-% \declaretheorem[style=thmredbox, numberwithin=section,
-% name=Утверждение]{proposition}
-% % \let\theorem\relax
-% \declaretheorem[style=thmredbox, numberwithin=section,
-% name=Теорема]{theorem}
-
-% % \let\lemma\relax
-% \declaretheorem[style=thmredbox, numberwithin=section,
-% name=Лемма]{lemma}
-% % \let\corollary\relax
-% \declaretheorem[style=thmredbox, numberwithin=section,
-% name=Следствие]{corollary} 
-
-% %%%% Без нумерации
-% \declaretheorem[style=thmredbox, numbered=no, name=Утверждение]{proposition*}
-% \declaretheorem[style=thmredbox, numbered=no, name=Теорема]{theorem*}
-% \declaretheorem[style=thmredbox, numbered=no, name=Лемма]{lemma*}
-% \declaretheorem[style=thmredbox, numbered=no, name=Следствие]{corollary*}
-
-% \makeatletter
-% % a robust wrapper of \qedsymbol
-% %%% see
-% %%% https://tex.stackexchange.com/questions/565808/thmtools-and-declaretheoremstyle-in-beamer 
-% \protected\edef\xqedsymbol{\unexpanded\expandafter{\qedsymbol}}
-% \makeatother
-% \declaretheoremstyle[
-%     headfont=\itshape\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,
-%     numbered=no,
-%     mdframed={
-%         linewidth=2pt,
-%         rightline=false, topline=false, bottomline=false,
-%         linecolor=RawSienna, backgroundcolor=RawSienna!1,
-%     },
-%     qed=\xqedsymbol
-% ]{thmproofbox}
-
-% \declaretheorem[style=thmproofbox, name=Доказательство]{replacementproof}
-% \renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
 
 %%%%%%%%%%%%%%%%%%%Содержание%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newtranslation[to=Russian]{Table of contents}{Содержание}
+\newtranslation[to=Russian]{Outline}{План}
+
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
 
 \AtBeginDocument{%
 %%%%  Print title page
 {
+  \setbeamercolor{author}{fg=blue!50!black}
+  \setbeamercolor{institute}{fg=blue!50!black}
+  \setbeamercolor{date}{fg=blue!50!black}
+  
   \usebackgroundtemplate{%
     \begin{tikzpicture}[remember picture,overlay]
       \node [opacity=0.2, xshift=7cm,yshift=3cm] at (current page.south west){
-        \includegraphics[ width=\textwidth, keepaspectratio
+        \includegraphics[ width=1.3\textwidth, keepaspectratio
         ]{images/msu-cmc-logo.png}};
     \end{tikzpicture}
   } 
@@ -572,20 +565,13 @@ titlenumbered
     \titlepage
   \end{frame}
 }
-\logo{\pgfuseimage{university-logo}}
-%%% Print table of contents
-  \begin{frame}<beamer>
-    \frametitle{\translate{Table of contents}}
-    \tableofcontents[currentsection,currentsubsection]
-  \end{frame}
 
-\AtBeginSection[]
-{
-  \begin{frame}<beamer>
-    \frametitle{\translate{Table of contents}}
+ \begin{frame}<beamer>
+    \frametitle{\translate{Outline}}
     \tableofcontents[currentsection,currentsubsection]
-  \end{frame}
-}
+ \end{frame}
+
+ \OUTLINE
 }
 
 %%%%%%%%%%%%%%%%%%% Печатаем библиографию%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -598,46 +584,4 @@ titlenumbered
 }
 
 %%%%%%%% Logo
-\pgfdeclareimage[height=0.7cm]{university-logo}{images/msu-cmc-logo}
-
-
-%%% User configuration commands
-%%%% Date
-% \newcommand*{\varDate}{\today}
-% \newcommand*{\Date}[1]{%
-  % \renewcommand{\varDate}{#1}
-% }
-
-%%%% Title
-% \newcommand*{\varTitle}{}
-% \newcommand*{\Title}[1]{%
-%   \renewcommand*{\varTitle}{#1}
-% }
-
-
-%%%% Subject
-%%%% Possible values:
-%%%%   Выпускная квалификационная работа
-%%%%   Магистерская диссертация
-%%%%   Курсовая работа
-%%%%   Доклад
-%%%%   Диссертация на соискание ученой степени кандидата наук
-% \newcommand*{\varSubject}{}
-% \newcommand*{\Subject}[1]{%
-%   \renewcommand*{\varSubject}{#1}
-% }
-
-%%%% Name of authors
-%%%%% Speaker
-% \newcommand*{\Speaker}[1]{\alert{#1}}
-% \newcommand*{\varAuthorsName}{}
-% \newcommand*{\AuthorsName}[1]{%
-%   \renewcommand*{\varAuthorsName}{#1}
-% }
-
-
-%%%% Information about author
-% \newcommand*{\varAuthorInfo}{}
-% \newcommand*{\Title}[1]{%
-%   \renewcommand*{\varTitle}{#1}
-% }
+% \pgfdeclareimage[height=0.7cm]{university-logo}{images/msu-cmc-logo}
