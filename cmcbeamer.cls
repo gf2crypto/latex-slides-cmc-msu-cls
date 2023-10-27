@@ -576,9 +576,10 @@ titlenumbered
 
 %%%%%%%%%%%%%%%%%%% Печатаем библиографию%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\newtranslation[to=Russian]{Bibliography}{Список литературы}
 \AtEndDocument{%
-  \begin{frame}[noframenumbering,plain,allowframebreaks]{Список
-      литературы}
+  \begin{frame}[noframenumbering,plain,allowframebreaks]{\translate{Bibliography}}
     \printbibliography[heading=none]
   \end{frame}
 }
