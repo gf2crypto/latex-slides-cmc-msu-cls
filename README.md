@@ -10,8 +10,10 @@ There are two ways to install this document class;
 
 2. (Git submodule) If you use git you can connect this repo as git submodule, just run in terminal:
 
+```bash
     cd slides
     git submodule add https://github.com/gf2crypto/latex-slides-cmc-msu-cls.git
+```
 
 ## Using document class.
 
