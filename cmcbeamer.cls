@@ -155,7 +155,7 @@ xcolor={dvipsnames, hyperref, table},
 \RequirePackage{graphicx}
 
 % Пусть к папке с рисунками по умолчанию
-\graphicspath{{images/}}
+\graphicspath{{latex-slides-cmc-msu-cls/images/}{images/}}
 
 % Можно указывать имя файлов без расширений
 % LaTeX будет последовательно подставлять перечисленные
@@ -558,7 +558,7 @@ titlenumbered
     \begin{tikzpicture}[remember picture,overlay]
       \node [opacity=0.2, xshift=7cm,yshift=3cm] at (current page.south west){
         \includegraphics[ width=1.3\textwidth, keepaspectratio
-        ]{images/msu-cmc-logo.png}};
+        ]{msu-cmc-logo.png}};
     \end{tikzpicture}
   } 
   \begin{frame}
