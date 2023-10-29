@@ -21,17 +21,31 @@
 %%%% NOOUTLINE option: disable outline (for example to use transition
 %%%% frames)
 \newcommand{\OUTLINE}{
-  \AtBeginSection[]{
   \begin{frame}<beamer>
     \frametitle{\translate{Outline}}
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
-  }
 }
 
 \DeclareOption{nooutline}{%
   \renewcommand{\OUTLINE}{}
 }
+
+%%%% TRANSITION option% enable transition slide
+
+\newcommand{\TRANSITION}{}%
+
+\DeclareOption{transition}{
+  \renewcommand{\TRANSITION}{
+\begin{transitionframe}
+  \begin{center}
+    {\Huge
+      \textcolor{black}{[\insertsectionnumber/\textcolor{red}{\total{section}}]\secname}}
+  \end{center}
+\end{transitionframe}
+}
+}
+
 
 %%%% PASS other options of beamer package
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{beamer}}
@@ -109,6 +123,8 @@ xcolor={dvipsnames, hyperref, table},
 % \RequirePackage[sups,scaled=.97]{XCharter}  %% неплохой, стильный шрифт
 \RequirePackage[default]{lato}
 \RequirePackage[cal=boondoxo]{mathalfa}  %% красивые каллиграфические буквы
+\RequirePackage{totcount}
+\regtotcounter{section}
 
 %%%%%%%%%%%%%%%%%%%Обеспечиваем работу с математикой%%%%%%%%%%%%%%%%%
 \RequirePackage{amsthm}
@@ -562,16 +578,21 @@ titlenumbered
     \end{tikzpicture}
   } 
   \begin{frame}
-    \titlepage
+    \titlepage%
   \end{frame}
 }
 
  \begin{frame}<beamer>
     \frametitle{\translate{Outline}}
-    \tableofcontents[currentsection,currentsubsection]
+    \tableofcontents%[currentsection,currentsubsection]
  \end{frame}
 
- \OUTLINE
+ \AtBeginSection[]{
+   \OUTLINE%
+
+   \TRANSITION%
+ }
+ 
 }
 
 %%%%%%%%%%%%%%%%%%% Печатаем библиографию%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
