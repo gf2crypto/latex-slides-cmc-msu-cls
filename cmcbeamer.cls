@@ -3,7 +3,7 @@
 
 %%% OPTIONS of CMCBEAMER class START:
 
-%%%% ASPECTRATIO: 169 (16:9) and 43 (4:3), default is 169
+%%%% OPTION: 169 (16:9) and 43 (4:3), default is 169 % aspect ratio
 \newcommand{\ASPECT}{169}
 \DeclareOption{169}{
   \renewcommand{\ASPECT}{169}
@@ -11,40 +11,74 @@
 \DeclareOption{43}{
   \renewcommand{\ASPECT}{43}
 }
-%%%% MINTED option: enable and disable minted package; default is
+%%%% OPTION: minted % enable and disable minted package; default is
 %%%% disabled
 \newcommand{\MINTED}{}
 \DeclareOption{minted}{\renewcommand{\MINTED}{
     \RequirePackage{minted}
 }}
 
-%%%% NOOUTLINE option: disable outline (for example to use transition
-%%%% frames)
+%%%% OPTION: outline % enable outline at the begin of each section
+
 \newcommand{\OUTLINE}{
-  \begin{frame}<beamer>
-    \frametitle{\translate{Outline}}
-    \tableofcontents[currentsection,currentsubsection]
-  \end{frame}
 }
 
-\DeclareOption{nooutline}{%
-  \renewcommand{\OUTLINE}{}
+\DeclareOption{outline}{%
+  \renewcommand{\OUTLINE}{%
+    \begin{frame}<beamer>%
+    \frametitle{\translate{Outline}}%
+    \tableofcontents[currentsection,currentsubsection]%
+  \end{frame}%
+  }
 }
 
-%%%% TRANSITION option% enable transition slide
+
+%%%% OPTION: transition % enable transition slide at the begin of each
+%%%% section
 
 \newcommand{\TRANSITION}{}%
 
 \DeclareOption{transition}{
   \renewcommand{\TRANSITION}{
-\begin{transitionframe}
-  \begin{center}
-    {\Huge
-      \textcolor{black}{[\insertsectionnumber/\textcolor{red}{\total{section}}]\secname}}
+    \begin{transitionframe}
+      \begin{center} {\Huge
+          \textcolor{black}{[\insertsectionnumber/\textcolor{red}{\total{section}}]\secname}}
   \end{center}
 \end{transitionframe}
-}
-}
+} }
+
+%%%% OPTION: toc % enable table of content
+%%%% section
+
+\newcommand{\TOC}{}%
+
+\DeclareOption{toc}{
+  \renewcommand{\TOC}{%
+    \begin{frame}<beamer>%
+      \frametitle{\translate{Outline}}%
+      \tableofcontents
+    \end{frame}%
+  \end{center}
+\end{transitionframe}
+} }
+
+%%%% OPTION: bib % print bibliography
+%%%% section
+
+\newcommand{\BIBLIOGRAPHY}{}%
+
+\DeclareOption{bib}{
+  \renewcommand{\BIBLIOGRAPHY}{%
+    \begin{frame}[noframenumbering,plain,allowframebreaks]{\translate{Bibliography}}
+      \printbibliography[heading=none]
+    \end{frame}
+} }
+
+%%%% OPTION: footcite % print citation as a footnotes
+
+\DeclareOption{footcite}{%
+  \renewcommand{\cite}[1]{\footcite{#1}} }
+
 
 
 %%%% PASS other options of beamer package
@@ -582,27 +616,19 @@ titlenumbered
   \end{frame}
 }
 
- \begin{frame}<beamer>
-    \frametitle{\translate{Outline}}
-    \tableofcontents%[currentsection,currentsubsection]
- \end{frame}
 
- \AtBeginSection[]{
-   \OUTLINE%
+\TOC
 
-   \TRANSITION%
- }
+\AtBeginSection[]{%
+  \OUTLINE%
 
-}
+  \TRANSITION%
+} }
 
 %%%%%%%%%%%%%%%%%%% Печатаем библиографию%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \newtranslation[to=Russian]{Bibliography}{Список литературы}
 \AtEndDocument{%
-  \begin{frame}[noframenumbering,plain,allowframebreaks]{\translate{Bibliography}}
-    \printbibliography[heading=none]
-  \end{frame}
+  \BIBLIOGRAPHY
 }
 
 %%%%%%%% Logo
