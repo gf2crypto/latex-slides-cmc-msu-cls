@@ -353,7 +353,7 @@ titlenumbered
 
 \IfFileExists{refs.bib}{
 %%%% true code
-\addbibresource{refs.bib}  
+\addbibresource{refs.bib}
 }{%%%% false code
 }
 
@@ -569,14 +569,14 @@ titlenumbered
   \setbeamercolor{author}{fg=blue!50!black}
   \setbeamercolor{institute}{fg=blue!50!black}
   \setbeamercolor{date}{fg=blue!50!black}
-  
+
   \usebackgroundtemplate{%
     \begin{tikzpicture}[remember picture,overlay]
       \node [opacity=0.2, xshift=7cm,yshift=3cm] at (current page.south west){
         \includegraphics[ width=1.3\textwidth, keepaspectratio
         ]{msu-cmc-logo.png}};
     \end{tikzpicture}
-  } 
+  }
   \begin{frame}
     \titlepage%
   \end{frame}
@@ -592,7 +592,7 @@ titlenumbered
 
    \TRANSITION%
  }
- 
+
 }
 
 %%%%%%%%%%%%%%%%%%% Печатаем библиографию%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
